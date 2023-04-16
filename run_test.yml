@@ -1,0 +1,25 @@
+- name: Install Poetry on WSL
+  # localhost: The WSL instance is running on the same
+  # physical machine as the Ansible control node.
+  hosts: oudwijk
+  become: yes
+
+  tasks:
+
+  - name: Update and upgrade packages 
+    apt:
+      update_cache: yes
+      upgrade: yes
+      autoremove: yes
+
+
+  - name: Download kubectl
+    get_url:
+      url: https://storage.googleapis.com/kubernetes-release/release/v1.20.0/bin/linux/amd64/kubectl
+      dest: /usr/local/bin/kubectl
+      mode: '0755'
+
+  - name: install kubectl
+    shell: |
+      chmod +x /usr/local/bin/kubectl
+      kubectl version --client

@@ -1,0 +1,43 @@
+---
+#
+# Tasks and roles for all hosts
+#
+
+
+- hosts: oudwijk
+  become: yes
+  # vars_files:
+  #   - group_vars/all/secret.yml
+
+  roles:
+      #
+      # Basics
+      #
+      - role: system
+        tags:
+            - system
+
+      # - role: neovim
+      #   tags:
+      #       - neovim
+
+      # - role: geerlingguy.security
+      #   tags:
+      #       - security
+
+      - role: geerlingguy.docker
+        tags:
+            - docker
+
+      # - role: chriswayg.msmtp-mailer
+      #   tags:
+      #       - msmtp
+
+      # - name: containers
+      #   tags:
+      #     - containers
+
+      # - role: tailscale
+      #   when: tailscale_enabled | default(false)
+      #   tags:
+      #       - tailscale
